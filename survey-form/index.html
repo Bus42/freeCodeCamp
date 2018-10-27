@@ -24,7 +24,7 @@
     </header>
     <main>
         <form id="form" method="void()" action="https://s.codepen.io/Bus42/debug/GYPeYg/dGkXWdRWvBaA" id="survey-form">
-            <fieldset class="container">
+            <fieldset id="about-you" class="container">
                 <legend>A little about you first</legend>
                 <div id="input-group">
                     <div>
@@ -68,7 +68,7 @@
                     </div>
                 </div>
             </fieldset>
-            <fieldset id="radio-group" class="container">
+            <fieldset id="george-lucas" class="container">
                 <legend>What was the dumbest thing George Lucas ever did?</legend>
                 <div class="radio-div">
                     <input type="radio" id="duck" name="movie" value="duck" required>
@@ -116,7 +116,7 @@
                     </div>
                     <hr>
                     <div>
-                        <p>The previous statement is true.</p>
+                        <p class="tip">The previous statement is true. <span>Other side of the Card Paradox</span> </p>
                         <fieldset>
                             <div>
                                 <input id="t1" type="checkbox" value="t1">
@@ -130,7 +130,7 @@
                     </div>
                     <hr>
                     <div>
-                        <p>Heterological</p>
+                        <p class="tip">Heterological <span>A example of false dichotomy. In this context, the referenced word "Heterological" is both Heterological and Autological.</span> </p>
                         <fieldset>
                             <div>
                                 <input id="t2" type="checkbox" value="t2">
@@ -144,7 +144,7 @@
                     </div>
                     <hr>
                     <div>
-                        <p>Can God microwave a burrito so hot that he can't eat it?</p>
+                        <p class="tip">Can [insert omnipotent deity here] microwave a burrito so hot that he can't eat it? <span>This one is an example of the Omnipotence Paradox. Either answer means there's something [omnipotent deity] can't do, which contradicts the ascribed characteristic of omnipotence.</span> </p>
                         <fieldset>
                             <div>
                                 <input id="t3" type="checkbox" value="t3">
@@ -160,7 +160,7 @@
                     </div>
                     <hr>
                     <div>
-                        <p>Schr&oumldinger's cat</p>
+                        <p class="tip">Schr&oumldinger's cat <span>This one's only here because you looked at it.</span> </p>
                         <fieldset>
                             <div>
                                 <input id="t4" type="checkbox" value="t4">
@@ -174,13 +174,16 @@
                     </div>
                 </div>
             </fieldset>
-            <fieldset class="container" id="comment-field">
+            <fieldset id="comment-field" class="container">
                 <legend>Any final words?</legend>
-                <textarea maxlength="300" name="comments" id="comments" cols="50" rows="10" placeholder="By submitting this form you are entering into a formal agreement that you will not, in any form, submit any forms."></textarea>
+                <textarea maxlength="300" name="comments" id="comments" placeholder="By submitting this form you are entering into a formal agreement that you will not, in any form, submit any forms."></textarea>
                 <hr>
                 <button type="submit">Submit</button>
             </fieldset>
         </form>
+        <section aria-hidden="true">
+            <img src="./morpheusCat.png" id="morpheusCat" alt="#">
+        </section>
     </main>
     <footer>
         <small>Many thanks to <a href="www.freecodecamp.org">FreeCodeCamp</a>, <a href="css-tricks.com">CSS Tricks</a>,
