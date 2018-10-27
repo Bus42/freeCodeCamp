@@ -155,8 +155,9 @@ a:hover {
 #morpheusCat {
   position: fixed;
   left: -800px;
-  top: 0;
+  top: 20vh;
   height: 700px;
+  max-height: 100vw;
   width: auto;
   margin: auto 0;
   animation: popup 15s ease-in-out forwards;
