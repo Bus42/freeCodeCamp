@@ -1,0 +1,37 @@
+
+@keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes fadeColorIn {
+    from {
+      background-color: transparent;
+      color: white;
+    }
+    to {
+      background-color: var(--primary-color);
+      color: black;
+    }
+  }
+  @keyframes fadeColorOut {
+    from {
+      background-color: var(--primary-color);
+      color: black;
+    }
+    to {
+      background-color: transparent;
+      color: white;
+    }
+  }
+  @keyframes grow {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.3);
+    }
+  }

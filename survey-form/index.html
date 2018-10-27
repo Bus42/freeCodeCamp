@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Survey Form</title>
+    <meta name="description" content="free code camp survey form, responsive web design">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <header>
+        <h1 id="title" title="Free Code Camp Survey Form">Enter to win an all expenses paid trip to Herman Gardens!</h1>
+        <p id="description">Answer all questions correctly and visit the home of automobile giant and cocaine
+            afficionado
+            John De Lorean in beautiful, sunny Detroit!</p>
+    </header>
+    <main>
+        <form id="form" method="void()" action="https://s.codepen.io/Bus42/debug/GYPeYg/dGkXWdRWvBaA" id="survey-form">
+            <fieldset class="container">
+                <legend>A little about you first</legend>
+                <div id="input-group">
+                    <div>
+                        <label for="name" id="name-label">Name</label>
+                        <input type="text" id="name" placeholder="2 - 30 characters" minlength="2" maxlength="30"
+                            required>
+                    </div>
+                    <div>
+                        <label for="email" id="email-label">Email</label>
+                        <input type="email" id="email" placeholder="user@domain.ext" required>
+                    </div>
+                    <div>
+                        <label for="number" id="number-label">Phone</label>
+                        <input type="tel" id="number" required placeholder="ex: 123-456-7890" minlength="7" maxlength="12">
+                    </div>
+
+                    <div id="select">
+                        <label for="dropdown">Favorite way to travel?</label>
+                        <div>
+                            <select id="dropdown" required>
+                                <optgroup label="Air">
+                                    <option value="Plane">Plane</option>
+                                    <option value="Helicopter">Helicopter</option>
+                                    <option value="Catapult">Catapult</option>
+                                    <option value="Falcor">Falcor</option>
+                                </optgroup>
+                                <optgroup label="Sea">
+                                    <option value="Private Yacht">Private Yacht</option>
+                                    <option value="Cruise Ship">Cruise Ship</option>
+                                    <option value="Pirate Ship">Pirate Ship</option>
+                                    <option value="Giant Turtle">Giant Turtle</option>
+                                </optgroup>
+                                <optgroup label="Land">
+                                    <option value="Car/Truck">Car/Truck</option>
+                                    <option value="Charter bus">Train</option>
+                                    <option value="Train">Shai-Hulud</option>
+                                    <option value="Howl's Moving Castle">Howl's Moving Castle</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset id="radio-group" class="container">
+                <legend>What was the dumbest thing George Lucas ever did?</legend>
+                <div class="radio-div">
+                    <input type="radio" id="duck" name="movie" value="duck" required>
+                    <label for="duck">Releasing Howard the Duck instead of burning the script and swearing anyone who
+                        knew
+                        about it to secrecy under penalty of death.</label>
+                </div>
+                <hr>
+                <div class="radio-div">
+                    <input type="radio" id="jarjar" name="movie" value="jarjar">
+                    <label for="jarjar">Meesa thinkin maybe da Jar Jar - heesa biggest mistaken Georgey ever makin!</label>
+                </div>
+                <hr>
+                <div class="radio-div">
+                    <input type="radio" id="midichlorians" name="movie" value="midichlorians">
+                    <label for="midichlorians">Introducing midichlorians in The Phantom Menace and reducing the
+                        ubiquitious
+                        force to bacterium.</label>
+                </div>
+                <hr>
+                <div class="radio-div">
+                    <input type="radio" id="holiday" name="movie" value="holiday">
+                    <label for="holiday">The 1978 Star Wars Holiday Special. Seriously this one's so bad I can't even
+                        joke
+                        about it. It's just.... just look it up.</label>
+                </div>
+            </fieldset>
+            <fieldset id="shrodingers-checkboxes" class="container">
+                <legend>Evaluate the following</legend>
+                <div>
+                    <div>
+                        <p class="tip">The following statement is false.<span data="tooltip">This is the Card Paradox,
+                                a
+                                variant of the Liar Paradox.</span></p>
+                        <fieldset>
+                            <div>
+                                <input id="t0" type="checkbox" value="t0">
+                                <label for="t0">True</label>
+                            </div>
+                            <div>
+                                <input id="f0" type="checkbox" value="f0">
+                                <label for="f0">False</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <hr>
+                    <div>
+                        <p>The previous statement is true.</p>
+                        <fieldset>
+                            <div>
+                                <input id="t1" type="checkbox" value="t1">
+                                <label for="t1">True</label>
+                            </div>
+                            <div>
+                                <input id="f1" type="checkbox" value="f1">
+                                <label for="f1">False</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <hr>
+                    <div>
+                        <p>Heterological</p>
+                        <fieldset>
+                            <div>
+                                <input id="t2" type="checkbox" value="t2">
+                                <label for="t2">Autological</label>
+                            </div>
+                            <div>
+                                <input id="f2" type="checkbox" value="f2">
+                                <label for="f2">Heterological</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <hr>
+                    <div>
+                        <p>Can God microwave a burrito so hot that he can't eat it?</p>
+                        <fieldset>
+                            <div>
+                                <input id="t3" type="checkbox" value="t3">
+                                <!-- #14 -->
+                                <label for="t3">Yes</label>
+                            </div>
+                            <div>
+                                <input id="f3" type="checkbox" value="f3">
+                                <!-- #14 -->
+                                <label for="f3">No</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <hr>
+                    <div>
+                        <p>Schr&oumldinger's cat</p>
+                        <fieldset>
+                            <div>
+                                <input id="t4" type="checkbox" value="t4">
+                                <label for="t4">Alive</label>
+                            </div>
+                            <div>
+                                <input id="f4" type="checkbox" value=f4>
+                                <label for="f4">Dead</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="container" id="comment-field">
+                <legend>Any final words?</legend>
+                <textarea maxlength="300" name="comments" id="comments" cols="50" rows="10" placeholder="By submitting this form you are entering into a formal agreement that you will not, in any form, submit any forms."></textarea>
+                <hr>
+                <button type="submit">Submit</button>
+            </fieldset>
+        </form>
+    </main>
+    <footer>
+        <small>Many thanks to <a href="www.freecodecamp.org">FreeCodeCamp</a>, <a href="css-tricks.com">CSS Tricks</a>,
+            and <a href="developer.mozilla.org">MDN</a>.</small>
+    </footer>
+    <script src="index.js" async defer></script>
+</body>
+
+</html>

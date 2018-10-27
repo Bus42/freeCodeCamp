@@ -1,0 +1,143 @@
+@import url("mediaQueries.css");
+@import url("animations.css");
+
+:root {
+  --primary-color: #71b2e8;
+}
+body {
+  background-color: #232323;
+  color: white;
+  box-sizing: border-box;
+}
+
+h1,
+legend,
+#description {
+  text-transform: capitalize;
+  text-align: center;
+}
+input,
+textarea {
+  border-radius: 5px;
+  padding: 5px;
+  background-color: var(--primary-color);
+  margin: 5px;
+  border-color: var(--primary-color);
+}
+select {
+  margin: 0 5px 0 20px;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: transparent;
+  border: 2px solid var(--primary-color);
+  color: white;
+}
+input:focus:invalid {
+  outline: none;
+  box-shadow: 0 0 5px 1px red;
+}
+input[type="radio"] {
+  margin-right: 10px;
+}
+legend {
+  padding: 10px;
+  color: var(--primary-color);
+  font-weight: 800;
+  text-shadow: 1px 1px black;
+  background-color: #424242;
+  border: 2px solid var(--primary-color);
+  border-radius: 5px;
+}
+fieldset {
+  border-radius: 5px;
+  background-color: #424242;
+  border-color: var(--primary-color);
+}
+
+/** tool tips */
+.tip:hover {
+  cursor: help;
+  position: relative;
+}
+.tip span {
+  display: none;
+}
+.tip:hover span {
+  border: 1px solid #c0c0c0;
+  border-radius: 5px;
+  padding: 8px;
+  display: block;
+  z-index: 100;
+  background-color: var(--primary-color);
+  left: 0px;
+  margin: 10px;
+  width: 250px;
+  position: absolute;
+  top: 10px;
+  text-decoration: none;
+  animation: fade-in 200ms linear;
+}
+/** end tool tips */
+button {
+  padding: 10px 15px;
+  border-radius: 5px;
+  background-color: transparent;
+  font-weight: 800;
+  align-self: right;
+  color: white;
+  text-transform: uppercase;
+  border-color: var(--primary-color);
+}
+button:hover,
+select:hover {
+  animation: fadeColorIn 250ms ease-in-out forwards;
+}
+button:focus {
+  background-color: var(--primary-color);
+  color: black;
+}
+button:not(:hover),
+select:not(:hover) {
+  animation: fadeColorOut 250ms ease-in-out forwards;
+}
+form {
+  display: flex;
+  flex-flow: row wrap;
+}
+hr {
+  margin: 30px 0;
+  border-color: var(--primary-color);
+}
+.container,
+#input-group {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  height: 100%;
+}
+.radio-div {
+  margin: 0 0 20px 0;
+}
+#input-group > * {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+#radio-group,
+#comments {
+  flex: 2 1 400px;
+}
+footer {
+  color: var(--primary-color);
+  text-align: center;
+}
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: 800;
+}
+a:hover {
+  animation: grow 250ms linear forwards;
+  color: white;
+}
