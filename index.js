@@ -61,12 +61,11 @@ getData().then(res => {
   title.text(res.source_name)
   range.text(`From ${fromDate} to ${toDate}`)
   updated.text(
-    `${lastUpdated.toLocaleDateString()} at ${lastUpdated.toLocaleTimeString()}`
+    `Last updated ${lastUpdated.toLocaleDateString()} at ${lastUpdated.toLocaleTimeString()}`
   )
-  const keys = Object.keys(res)
-  console.log(keys)
-  for (let i = 0; i < keys.length; i++) {
-    const element = keys[i]
-    console.log(res[element])
-  }
+  output.selectAll('p')
+  .data(res.data)
+  .enter()
+  .append('p')
+  .text(d => d)
 })
