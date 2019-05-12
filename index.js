@@ -38,7 +38,7 @@ function getRandomColor () {
   console.log(randomColor)
 })()
 
-const output = d3.select(document.getElementById('output'))
+const output = d3.select('svg')
 const title = d3.select(document.getElementById('title'))
 const range = d3.select(document.getElementById('range'))
 const updated = d3.select(document.getElementById('updated'))
@@ -55,6 +55,12 @@ getData = () => {
 }
 
 getData().then(res => {
+  console.log(res.data)
+  let svgWidth = 10000
+  let svgHeight = 300
+  let barPadding = 5
+  let barWidth = svgWidth / res.data.length
+
   const fromDate = new Date(res.from_date).toLocaleDateString()
   const toDate = new Date(res.to_date).toLocaleDateString()
   const lastUpdated = new Date(res.updated_at)
@@ -63,9 +69,18 @@ getData().then(res => {
   updated.text(
     `Last updated ${lastUpdated.toLocaleDateString()} at ${lastUpdated.toLocaleTimeString()}`
   )
-  output.selectAll('p')
-  .data(res.data)
-  .enter()
-  .append('p')
-  .text(d => d)
+  output
+    .attr('width', svgWidth)
+    .attr('height', svgHeight)
+    .selectAll('rect')
+    .data(res.data)
+    .enter()
+    .append('rect')
+    .attr('y', d => (svgHeight = d[1]))
+    .attr('height', d => d[1])
+    .attr('width', barWidth - barPadding)
+    .attr('transform', (d, i) => {
+      const translate = [barWidth * i, 0]
+      return `translate(${translate})`
+    })
 })
