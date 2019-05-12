@@ -38,4 +38,35 @@ function getRandomColor () {
   console.log(randomColor)
 })()
 
+const output = d3.select(document.getElementById('output'))
+const title = d3.select(document.getElementById('title'))
+const range = d3.select(document.getElementById('range'))
+const updated = d3.select(document.getElementById('updated'))
 
+getData = () => {
+  return new Promise((resolve, reject) => {
+    const url =
+      'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json'
+    fetch(url)
+      .then(res => res.json())
+      .then(data => resolve(data))
+      .catch(err => reject(err))
+  })
+}
+
+getData().then(res => {
+  const fromDate = new Date(res.from_date).toLocaleDateString()
+  const toDate = new Date(res.to_date).toLocaleDateString()
+  const lastUpdated = new Date(res.updated_at)
+  title.text(res.source_name)
+  range.text(`From ${fromDate} to ${toDate}`)
+  updated.text(
+    `${lastUpdated.toLocaleDateString()} at ${lastUpdated.toLocaleTimeString()}`
+  )
+  const keys = Object.keys(res)
+  console.log(keys)
+  for (let i = 0; i < keys.length; i++) {
+    const element = keys[i]
+    console.log(res[element])
+  }
+})
