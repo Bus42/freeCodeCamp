@@ -55,32 +55,37 @@ getData = () => {
 }
 
 getData().then(res => {
-  console.log(res.data)
-  let svgWidth = 10000
-  let svgHeight = 300
-  let barPadding = 5
-  let barWidth = svgWidth / res.data.length
-
+  const maxVal = d3.max(res.data, d => d[1])
+  const targetHeight = 500 // Height of SVG element
+  const modifier = maxVal / targetHeight
+  const svgHeight = maxVal / modifier
   const fromDate = new Date(res.from_date).toLocaleDateString()
   const toDate = new Date(res.to_date).toLocaleDateString()
   const lastUpdated = new Date(res.updated_at)
+  const bar = {
+    width: 2,
+    margin: 2
+  }
+
+  console.log(`%c${res.data.length} data points`, `color: ${colors.light}`)
+  console.groupCollapsed('%cData Table', `color: ${colors.dark}`)
+  console.table(res.data)
+  console.groupEnd()
+
   title.text(res.source_name)
   range.text(`From ${fromDate} to ${toDate}`)
   updated.text(
     `Last updated ${lastUpdated.toLocaleDateString()} at ${lastUpdated.toLocaleTimeString()}`
   )
   output
-    .attr('width', svgWidth)
+    .attr('width', `${res.data.length * (bar.width + bar.margin)}`)
     .attr('height', svgHeight)
     .selectAll('rect')
     .data(res.data)
     .enter()
     .append('rect')
-    .attr('y', d => (svgHeight = d[1]))
-    .attr('height', d => d[1])
-    .attr('width', barWidth - barPadding)
-    .attr('transform', (d, i) => {
-      const translate = [barWidth * i, 0]
-      return `translate(${translate})`
-    })
+    .attr('x', (d, i) => i * (bar.width + bar.margin))
+    .attr('y', d => svgHeight - d[1] / modifier)
+    .attr('width', bar.width)
+    .attr('height', d => d[1] / modifier)
 })
