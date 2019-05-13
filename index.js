@@ -42,6 +42,7 @@ const output = d3.select('svg')
 const title = d3.select(document.getElementById('title'))
 const range = d3.select(document.getElementById('range'))
 const updated = d3.select(document.getElementById('updated'))
+const description = d3.select(document.getElementById('description'))
 
 getData = () => {
   return new Promise((resolve, reject) => {
@@ -57,14 +58,16 @@ getData = () => {
 getData().then(res => {
   const maxVal = d3.max(res.data, d => d[1])
   const targetHeight = 500 // Height of SVG element
+  const targetWidth = window.innerWidth
+
   const modifier = maxVal / targetHeight
   const svgHeight = maxVal / modifier
   const fromDate = new Date(res.from_date).toLocaleDateString()
   const toDate = new Date(res.to_date).toLocaleDateString()
   const lastUpdated = new Date(res.updated_at)
   const bar = {
-    width: 2,
-    margin: 2
+    width: Math.floor(targetWidth / res.data.length),
+    margin: 0
   }
 
   console.log(`%c${res.data.length} data points`, `color: ${colors.light}`)
@@ -84,8 +87,24 @@ getData().then(res => {
     .data(res.data)
     .enter()
     .append('rect')
-    .attr('x', (d, i) => i * (bar.width + bar.margin))
+    .attr('class', 'bar')
+    .attr('data-date', d => d[0])
+    .attr('data-gdp', d => d[1])
+    .attr('x', (d, i) => i * (bar.width))
     .attr('y', d => svgHeight - d[1] / modifier)
     .attr('width', bar.width)
     .attr('height', d => d[1] / modifier)
+    .attr('fill', 'steelblue')
+    .append('title')
+    .attr('id', 'tooltip')
+    .attr('data-date', d => d[0])
+    .text(d => {
+      const targetDate = new Date(d[0]).toDateString()
+      return `${targetDate}\n$${d[1]}`
+    })
+    .attr('x', d => (d, i) => i * (bar.width + bar.margin))
+    .attr('y', d => svgHeight - d[1] / modifier)
+
+    description.text(res.description)
 })
+

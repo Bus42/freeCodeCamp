@@ -14,11 +14,15 @@
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <style>
+                body {
+                    background-color: darkgrey;
+                }
                 rect:hover {
-                    color: green;
+                    fill: #85bb65;
                 }
                 #output {
-                    background-color: #EDEDED;
+                    background-image: url('money.jpg');
+                    background-size: cover;
                 }
             </style>
     </head>
@@ -33,6 +37,7 @@
             </h4>
             <span id="updated"></span>
             <svg id="output"></svg>
+            <p id="description"></p>
 
         </div>
         <script src="https://d3js.org/d3.v4.min.js"></script>
