@@ -32,12 +32,6 @@ function getRandomColor () {
   return picks.join('')
 }
 
-;(test = () => {
-  const randomColor = colors.random
-  console.log('%cindex.js loaded', `color: ${colors.random}`)
-  console.log(randomColor)
-})()
-
 const output = d3.select('svg')
 const title = d3.select(document.getElementById('title'))
 const range = d3.select(document.getElementById('range'))
@@ -56,19 +50,20 @@ getData = () => {
 }
 
 getData().then(res => {
+  // find the highest value in the dataset
   const maxVal = d3.max(res.data, d => d[1])
-  const targetHeight = 500 // Height of SVG element
-  const targetWidth = window.innerWidth
+  // specify height of svg
+  const svgHeight = 500
+  // calculate width of svg
+  const svgWidth = window.innerWidth * 0.9
 
-  const modifier = maxVal / targetHeight
-  const svgHeight = maxVal / modifier
+  const modifier = maxVal / svgHeight
+  const barHeight = maxVal / modifier
   const fromDate = new Date(res.from_date).toLocaleDateString()
   const toDate = new Date(res.to_date).toLocaleDateString()
   const lastUpdated = new Date(res.updated_at)
-  const bar = {
-    width: Math.floor(targetWidth / res.data.length),
-    margin: 0
-  }
+  const barMargin = 0.5
+  const barWidth = svgWidth / res.data.length - barMargin
 
   console.log(`%c${res.data.length} data points`, `color: ${colors.light}`)
   console.groupCollapsed('%cData Table', `color: ${colors.dark}`)
@@ -80,9 +75,11 @@ getData().then(res => {
   updated.text(
     `Last updated ${lastUpdated.toLocaleDateString()} at ${lastUpdated.toLocaleTimeString()}`
   )
+  // svg for chart
   output
-    .attr('width', `${res.data.length * (bar.width + bar.margin)}`)
-    .attr('height', svgHeight)
+    .attr('width', `${svgWidth}vw`)
+    .style('overflow', 'show')
+    .attr('height', barHeight)
     .selectAll('rect')
     .data(res.data)
     .enter()
@@ -90,9 +87,9 @@ getData().then(res => {
     .attr('class', 'bar')
     .attr('data-date', d => d[0])
     .attr('data-gdp', d => d[1])
-    .attr('x', (d, i) => i * (bar.width))
-    .attr('y', d => svgHeight - d[1] / modifier)
-    .attr('width', bar.width)
+    .attr('x', (d, i) => i * (barWidth + barMargin))
+    .attr('y', d => barHeight - d[1] / modifier)
+    .attr('width', barWidth)
     .attr('height', d => d[1] / modifier)
     .attr('fill', 'steelblue')
     .append('title')
@@ -102,9 +99,31 @@ getData().then(res => {
       const targetDate = new Date(d[0]).toDateString()
       return `${targetDate}\n$${d[1]}`
     })
-    .attr('x', d => (d, i) => i * (bar.width + bar.margin))
-    .attr('y', d => svgHeight - d[1] / modifier)
+    .attr('x', d => (d, i) => i * (barWidth + barMargin))
+    .attr('y', d => barHeight - d[1] / modifier)
+  // Add description below svg
+  description
+    .text(res.description)
+    .style('position', 'relative')
+    .style('top', `${svgHeight}px`)
+  // Axes
+  const xScale = d3
+    .scaleLinear()
+    .domain([0, d3.max(res.data, d => d[1])])
+    .range([0, svgWidth])
 
-    description.text(res.description)
+  const yScale = d3
+    .scaleLinear()
+    .domain([0, d3.max(res.data, d => d[1])])
+    .range([svgHeight, 0])
+
+  const x_axis = d3.axisBottom().scale(xScale)
+  const y_axis = d3.axisLeft().scale(yScale)
+  output
+    .append('g')
+    .attr('id', 'x-axis')
+    .call(x_axis)
+    .append('g')
+    .attr('id', 'y-axis')
+    .call(y_axis)
 })
-
